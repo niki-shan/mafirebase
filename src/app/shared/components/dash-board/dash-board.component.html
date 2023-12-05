@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center m-3">
+            Add post
+            <button mat-mini-fab color="primary"
+             aria-label="Example icon button with a menu icon"
+             (click)="onAddpost()">
+                <mat-icon>add</mat-icon>
+              </button>
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+     
+    <app-post-card  *ngFor="let post of postArray"
+    (eventemitter)="patchvalue($event)"
+    [postsObj]="post"></app-post-card>
+  
+    </div>
+</div>

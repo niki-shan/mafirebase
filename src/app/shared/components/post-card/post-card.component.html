@@ -1,0 +1,16 @@
+
+
+<mat-card>
+    <mat-card-title>
+          {{postsObj.title}}
+    </mat-card-title>
+    <mat-card-content>
+        {{postsObj.body}}
+    </mat-card-content>
+    <mat-card-actions class="d-flex justify-content-between">
+        <button mat-raised-button color="primary" (click)="onEdit()">Edit</button>
+        <button mat-raised-button color="warn">Delete</button>
+
+    </mat-card-actions>
+
+</mat-card>
