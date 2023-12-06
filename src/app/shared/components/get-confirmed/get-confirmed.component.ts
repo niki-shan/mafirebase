@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-get-confirmed',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetConfirmedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _matDialogRef : MatDialogRef<GetConfirmedComponent>) { }
 
   ngOnInit(): void {
   }
+
+  confirm(){
+    this._matDialogRef.close(true)
+    }
+    cancle(){
+    this._matDialogRef.close(false)
+    }
 
 }

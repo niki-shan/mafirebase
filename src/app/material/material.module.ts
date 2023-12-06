@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list'
 import{MatCardModule}from '@angular/material/card'
 import{MatDialogModule}from '@angular/material/dialog'
+import{MatProgressSpinnerModule}from '@angular/material/progress-spinner'
 
 
 
@@ -23,7 +24,8 @@ const modulArray = [
     MatButtonModule,
     MatListModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
 
 ]
 

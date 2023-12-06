@@ -21,7 +21,7 @@
         <button mat-raised-button color="primary" *ngIf="updateValue"
          type="submit" > ADD</button>
          <button mat-raised-button color="primary" 
-         type="submit"*ngIf="!updateValue"  >Update</button>
+         type="button"*ngIf="!updateValue"  (click)="onUpdate()" >Update</button>
 
     </div>
 

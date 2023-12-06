@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PostService } from '../../services/post.service';
+import { Ipost } from '../../models/post';
 
 @Component({
   selector: 'app-post-form',
@@ -11,15 +12,22 @@ import { PostService } from '../../services/post.service';
 })
 export class PostFormComponent implements OnInit {
  postForm !: FormGroup
+ getPost! : Ipost
  updateValue  :boolean = false
   constructor( @Inject (MAT_DIALOG_DATA) editpost : any, 
   private _dialogREf : MatDialogRef<PostFormComponent>,
   private _postservice : PostService ) { 
     this.createForm()
-    this.postForm.patchValue(editpost)
+    if(editpost){
+    this.getPost = editpost
     
+    this.postForm.patchValue(editpost) 
+
+    }
     
   }
+
+  
   
 
   ngOnInit( ): void {
@@ -49,7 +57,7 @@ export class PostFormComponent implements OnInit {
  this._postservice.creatPost(obj)
  .subscribe(res=>{
   console.log(res);
-  this._postservice.creatobserver(obj)
+  this._postservice.creatobserver({...obj, id : res.name})
   this.postForm.reset()
   this._dialogREf.close()
   
@@ -58,8 +66,17 @@ export class PostFormComponent implements OnInit {
  }
    }
   
-   
-   
+   onUpdate(){
+    let updatedObj = {...this.postForm.value, id : this.getPost.id };
+     this._postservice.updatePost(updatedObj)
+     .subscribe((res : any)=>{
+        console.log(res);
+        this._postservice.observerNext(res)
+        this.postForm.reset()
+        this._dialogREf.close()
+
+     })
+    }
 
   }
 

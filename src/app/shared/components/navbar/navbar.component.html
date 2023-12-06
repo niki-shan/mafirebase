@@ -1,6 +1,6 @@
 
     <mat-sidenav #sidenav>        
-      <mat-nav-list>
+      <mat-nav-list  (click)="sidenav.close()">
            <a mat-list-item routerLink="/">
              <span>Posts</span>
              <mat-icon>
@@ -15,4 +15,5 @@
          (click)="sidenav.open()">
                  <mat-icon>menu</mat-icon>
         </button>
+        
     </mat-toolbar>

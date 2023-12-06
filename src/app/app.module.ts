@@ -10,8 +10,9 @@ import { PostFormComponent } from './shared/components/post-form/post-form.compo
 import { PostCardComponent } from './shared/components/post-card/post-card.component';
 import { GetConfirmedComponent } from './shared/components/get-confirmed/get-confirmed.component';
 import { MaterialModule } from './material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InterceptService } from './shared/services/intercept.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
     
   ],
-  providers: [],
+  providers: [
+    {provide : HTTP_INTERCEPTORS,
+    useClass : InterceptService ,
+    multi : true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

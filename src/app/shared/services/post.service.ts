@@ -11,8 +11,10 @@
  export class PostService {
   
    postUrl : string= `${environment.baseUrl}/post.json`
-   private _observal$ :  Subject<Ipost>= new Subject<Ipost>()
-   postObservable$ = this._observal$.asObservable()
+   private _observal$ :  Subject<Ipost>= new Subject<Ipost>();
+   postObservable$ = this._observal$.asObservable();
+   private _subobserval$ : Subject<Ipost> = new Subject<Ipost>();
+   subobserval$ = this._subobserval$.asObservable()
   
    
   constructor( private _http : HttpClient) { 
@@ -53,5 +55,20 @@
   }
 
 
-  onPatch(){}
+  updatePost(post : Ipost){
+    let updateUrl =  `${environment.baseUrl}/ post /${post.id}.json`
+    return this._http.patch(updateUrl , post)
+
+  }
+
+
+  observerNext(post : Ipost){
+    this._subobserval$.next(post)
+  }
+
+  removePost(postId : string){
+    let updateUrl = `${environment.baseUrl}/post/${postId}.json`
+    return this._http.delete(updateUrl)
+  }
+  
 }
